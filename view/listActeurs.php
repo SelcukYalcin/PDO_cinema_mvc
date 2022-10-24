@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> acteur</p>
+<p>il y a <?= $requete->rowCount() ?> acteurs</p>
 
 <table>
     <thead>
@@ -25,6 +25,6 @@
 <?php
 
 $titre = "Liste des acteurs";
-$titre_secondaire = "Liste des films";
+$titre_secondaire = "Liste des acteurs";
 $contenu = ob_get_clean();
 require "view/template.php";
