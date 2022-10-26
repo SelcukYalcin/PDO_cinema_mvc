@@ -23,12 +23,12 @@ if(isset($_GET["action"])) {
     case "listRealisateurs" :
         $ctrlCinema->listRealisateurs(); 
         break;
-    
-    case "listGenres" :
-        $ctrlCinema->genre();
-
+    case "listGenre" :
+        $ctrlCinema->listGenre();
+        break;
     case "listRoles" :
         $ctrlCinema->listRoles();
+        break;
     }
 }
     else {

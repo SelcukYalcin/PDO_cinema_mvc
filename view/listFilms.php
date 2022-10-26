@@ -6,14 +6,14 @@
     <thead>
         <tr>
             <th>TITRE</th>
-            <th>ANNE SORTIE FRANCE</th>
+            <th>ANNEE SORTIE FRANCE</th>
         </tr>
     </thead>
     <tbody>
         <?php
             foreach ($requete->fetchAll() as $film) { ?>
                 <tr>
-                    <td><?= $film["titre"] ?></td>
+                    <td><a href="index.php?action=detailFilm&id=<?= $film["id_film"] ?>"<?= $film["titre"] ?></a></td> 
                     <td><?= $film["annee_sortie_france"] ?></td>
                 </tr>
             <?php } ?>

@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> genre</p>
+<p>il y a <?= $requete->rowCount() ?> genres</p>
 
 <table>
     <thead>
         <tr>
-            <th>GENRE</th>
+            <th>GENRES</th>
         </tr>
     </thead>
     <tbody>

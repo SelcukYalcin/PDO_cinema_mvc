@@ -11,11 +11,11 @@
     <nav> 
         <ul>
            <li> <a href="index.php">ACCUEIL</a></li> 
-           <li> <a href="index.php?action=listFilms.php">FILMS</a></li> 
+           <li> <a href="index.php?action=listFilms">FILMS</a></li> 
            <li> <a href="index.php?action=listActeurs">ACTEURS</a></li>
            <li> <a href="index.php?action=listRealisateurs">REALISATEURS</a> </li>
-           <li> <a href="index.php?action=listGenre.php">GENRE</a></li>
-           <li> <a href="index.php?action=listRoles.php">ROLES</a></li> 
+           <li> <a href="index.php?action=listGenre">GENRES</a></li>
+           <li> <a href="index.php?action=listRoles">ROLES</a></li> 
         </ul>
     </nav>
     <div id="contenu">
