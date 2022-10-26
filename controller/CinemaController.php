@@ -65,16 +65,8 @@ class CinemaController {
         require "view/listRoles.php";
     }
 
-    public function Accueil() {
-        require "view/index.php";
+    public function accueil() {
+        require "view/accueil.php";
     }
-    public function detailActeur() {
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare("SELECT * FROM acteur WHERE id_acteur = :id");
-        require "view/acteur/detailActeur.php";
-
-
-    }
-
 
 }

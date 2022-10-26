@@ -10,12 +10,12 @@
 <body>
     <nav> 
         <ul>
-           <li> <a href="index.php"></a>ACCUEIL</li> 
-           <li> <a href="index.php?action=listFilms.php"></a>FILMS</li> 
-           <li> <a href="index.php?action=listActeurs"></a>ACTEURS</li>
-           <li> <a href="index.php?action=listRealisateurs"></a>REALISATEURS </li>
-           <li> <a href="index.php?action=listGenre.php"></a>GENRE</li>
-           <li> <a href="index.php?action=listRoles.php"></a>ROLES</li> 
+           <li> <a href="index.php">ACCUEIL</a></li> 
+           <li> <a href="index.php?action=listFilms.php">FILMS</a></li> 
+           <li> <a href="index.php?action=listActeurs">ACTEURS</a></li>
+           <li> <a href="index.php?action=listRealisateurs">REALISATEURS</a> </li>
+           <li> <a href="index.php?action=listGenre.php">GENRE</a></li>
+           <li> <a href="index.php?action=listRoles.php">ROLES</a></li> 
         </ul>
     </nav>
     <div id="contenu">
