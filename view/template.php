@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="public\CSS\style.css" rel="stylesheet"/>
-    <title>$titre</title>
+    <title><?= $titre ?></title>
 </head>
 <body>
     <nav> 
@@ -18,11 +18,12 @@
            <li> <a href="index.php?action=listRoles">ROLES</a></li> 
         </ul>
     </nav>
-    <div id="contenu">
-        <h1 >PDO CINEMA</h1>
-        <h2 ><?= $titre_secondaire ?></h2>
-        <?= $contenu ?>
-    </div>
+    <main>
+        <div id="contenu">
+            <h2 ><?= $titre_secondaire ?></h2>
+            <?= $contenu ?>
+        </div>
+</main>
     
 </body>
 </html>

@@ -1,7 +1,5 @@
 <?php ob_start(); ?>
 
-<p>ceci un test</p>
-
 <?php
 
 $titre = "accueil";

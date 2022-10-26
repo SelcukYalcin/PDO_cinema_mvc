@@ -6,8 +6,7 @@ body{
     font-size: 16px;
     font-family: Arial, sans-serif;   
     margin: 0 auto;
-    background: linear-gradient(0deg, rgba(236,63,81,1) 0%, rgba(219,101,50,1) 50%, rgba(236,63,81,1) 100%);
-    background-size: cover;
+    background-color: white;
 
 }
 th,td {
