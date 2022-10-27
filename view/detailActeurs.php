@@ -20,12 +20,12 @@ $detailActeurs = $requete->fetch();
             </tr>
         </thead>
         <tbody>
-            <!-- <?php foreach($requete2->fetchAll() as $cast) { ?>
+            <?php foreach($requete2->fetchAll() as $cast) { ?>
             <tr>
                 <td><?= $cast["titre"] ?></td>
                 <td><?= $cast["anneeSortie"] ?></td>
                 <td><?= $cast["nomRole"] ?></td>
-            </tr> -->
+            </tr>
             <?php } ?>
         </tbody>
     </table>
