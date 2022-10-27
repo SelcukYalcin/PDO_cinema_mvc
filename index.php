@@ -42,11 +42,18 @@ if(isset($_GET["action"])) {
     case "detailGenres" :
         $ctrlCinema->detailGenres($id);
         break;
+   
     case "detailRoles" :
         $ctrlCinema->detailRoles($id);
         break;
-    }   
-}
+    case "formulaire":
+        $ctrlCinema->formulaire();
+        break;
+    case "addRole" :
+        $ctrlCinema->addRole();
+        break;
+    } 
+ }
     else {
         $ctrlCinema->accueil();        
 }

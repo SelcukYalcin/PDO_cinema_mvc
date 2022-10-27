@@ -4,7 +4,7 @@ namespace Controller;
 use Model\Connect;
 
 class CinemaController {
-    // lister les films
+    //----------- LISTER LES SECTIONS-----------
     public function listFilms() {
         // On se connecte
         $pdo = Connect::seConnecter();
@@ -19,9 +19,7 @@ class CinemaController {
     }
 
     public function listActeurs() {
-        // On se connecte
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
         $requete = $pdo->query("
         SELECT a.id_personne, CONCAT(p.prenom,' ', p.nom) AS identite, DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date
         FROM personne p
@@ -32,9 +30,7 @@ class CinemaController {
     }
 
     public function listRealisateurs() {
-        // On se connecte
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
         $requete = $pdo->query("
         SELECT r.id_personne, CONCAT(p.prenom,' ',p.nom) AS identite, DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date
         FROM realisateur r
@@ -45,9 +41,7 @@ class CinemaController {
     }
 
     public function listGenre() {
-        // On se connecte
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
         $requete = $pdo->query("
         SELECT id_genre, nom_genre
         FROM genre "
@@ -56,9 +50,7 @@ class CinemaController {
     }
     
     public function listRoles() {
-        // On se connecte
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
         $requete = $pdo->query("
         SELECT id_role, nom_role
         FROM  role"
@@ -71,7 +63,7 @@ class CinemaController {
     }
 
 
-    // AFFICHER LE DETAIL
+    // -------------AFFICHER LE DETAIL-------------------
     public function detailFilms($id) {
         $pdo=Connect::seConnecter();
         $requete=$pdo->prepare("
@@ -153,9 +145,7 @@ class CinemaController {
         require "view/detailRealisateurs.php";
     }
     public function detailGenres($id) {
-        // On se connecte
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
         $requete = $pdo->prepare("
         SELECT g.id_genre, g.nom_genre
         FROM genre g
@@ -179,9 +169,7 @@ class CinemaController {
         require "view/detailGenres.php";
     }
     public function detailRoles($id) {
-        // On se connecte
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
         $requete = $pdo->prepare("
         SELECT r.id_role, r.nom_role
         FROM role r
@@ -207,5 +195,26 @@ class CinemaController {
         require "view/detailRoles.php";
     }
 
+    // ----------------AJOUT D'ELEMENTS ------------
+    public function formulaire() {
+        require "view/formulaire.php";
+    }    
+    public function addRole() {
+        if (isset($_POST["submit"])) {
+            $nom_role = filter_input(INPUT_POST, 'nom_role', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if($nom_role) {
+                $pdo=Connect::seConnecter();
+                $requete=$pdo->prepare("
+                INSERT INTO Role (nom_role) VALUES (:nom_role)
+                ");
+                $requete->execute([
+                    ":nomRole" => $nom_role
+                ]);
+                // redirection vers la liste des roles
+                header("Location: index.php?action=listRoles"); die;
+            }
+        }
+        require "view/formulaire.php";
+    }
 
 }
