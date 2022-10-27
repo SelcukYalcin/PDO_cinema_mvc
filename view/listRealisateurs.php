@@ -5,8 +5,7 @@
 <table>
     <thead>
         <tr>
-            <th>NOM</th>
-            <th>PRENOM</th>
+            <th>REALISATEUR</th>
             <th>DATE DE NAISSANCE</th>
         </tr>
     </thead>
@@ -14,9 +13,8 @@
         <?php
             foreach ($requete->fetchAll() as $realisateur) { ?>
                 <tr>
-                    <td><?= $realisateur["prenom"] ?></td>
-                    <td><?= $realisateur["date_naissance"]?></td>
-                    <td><?= $realisateur["nom"] ?></td>
+                    <td><?= $realisateur["identite"] ?></td>
+                    <td><?= $realisateur["date"] ?></td>
                 </tr>
             <?php } ?>
     </tbody>
