@@ -4,22 +4,25 @@
 <div class="aside">
     <div>
         <h1><?= $detailFilms["titre"] ?></h1>
+        <p><?= $detailFilms["note"] ?> / 5</p>
+        <p><?= $detailFilms["duree"] ?></p>
+        <p><?= $detailFilms["realisateur"] ?></p>
     </div>
     
     <table>
         <thead>
             <tr>
-                <th>NOTE</th>
-                <th>DUREE</th>
-                <th>REALISATEUR</th>
+                <th>ACTEUR</th>
+                <th>ROLE</th>
             </tr>
         </thead>
         <tbody>
+            <?php foreach($requete2->fetchAll() as $cast) { ?>
             <tr>
-                <td><?= $detailFilms["note"] ?> / 5</td>
-                <td><?= $detailFilms["duree"] ?></td>
-                <td><?= $detailFilms["realisateur"] ?></td>
+                <td><?= $cast["Acteur"] ?></td>
+                <td><?= $cast["Role"] ?></td>
             </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>

@@ -85,7 +85,7 @@ class CinemaController {
             ["id" => $id]
         );
         $requete2=$pdo->prepare("
-            SELECT CONCAT(p.prenom,' ', p.nom) AS listActeurs, r.nom_role AS nomRole
+            SELECT CONCAT(p.prenom,' ', p.nom) AS Acteur, r.nom_role AS Role
             FROM film f
             INNER JOIN jouer j ON j.id_film = f.id_film
             INNER JOIN acteur a ON j.id_acteur = a.id_acteur
