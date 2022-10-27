@@ -21,3 +21,9 @@
         </tbody>
     </table>
 </div>
+<?php
+
+$titre = "Détail du Genre";
+$titre_secondaire = "GENRE";
+$contenu = ob_get_clean();
+require "view/template.php";
