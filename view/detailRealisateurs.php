@@ -1,8 +1,6 @@
 <?php ob_start(); ?>
+<?php $detailRealisateurs = $requete->fetch();?>
 
-<?php
-$detailRealisateurs = $requete->fetch();
-?>
 
 <div class="aside">
     <div>

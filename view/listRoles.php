@@ -10,9 +10,9 @@
     </thead>
     <tbody>
         <?php
-            foreach ($requete->fetchAll() as $role) { ?>
+            foreach ($requete->fetchAll() as $detailRoles) { ?>
                 <tr>
-                    <td><?= $role["nom_role"] ?></td>
+                    <td><a href="index.php?action=detailRoles&id=<?= $detailRoles["id_role"] ?>"><?= $detailRoles["nom_role"] ?></a></td>
                 </tr>
             <?php } ?>
     </tbody>

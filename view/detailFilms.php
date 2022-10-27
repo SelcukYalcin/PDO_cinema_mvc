@@ -1,8 +1,5 @@
-<?php
-
-$detailFilms = $requete->fetch();
-
-?>
+<?php ob_start(); ?>
+<?php $detailFilms = $requete->fetch();?>
 
 <div class="aside">
     <div>

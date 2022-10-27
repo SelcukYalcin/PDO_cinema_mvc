@@ -39,12 +39,12 @@ if(isset($_GET["action"])) {
     case "detailRealisateurs" :
         $ctrlCinema->detailRealisateurs($id);
         break;
-    // case "detailGenres" :
-    //     $ctrlCinema->descriptionGenre($id);
-    //     break;
-    // case "detailRoles" :
-    //     $ctrlCinema->descriptionRole($id);
-    //     break;
+    case "detailGenres" :
+        $ctrlCinema->detailGenres($id);
+        break;
+    case "detailRoles" :
+        $ctrlCinema->detailRoles($id);
+        break;
     }   
 }
     else {

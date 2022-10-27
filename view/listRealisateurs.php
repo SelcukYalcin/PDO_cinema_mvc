@@ -11,10 +11,10 @@
     </thead>
     <tbody>
         <?php
-            foreach ($requete->fetchAll() as $realisateur) { ?>
+            foreach ($requete->fetchAll() as $realisateurs) { ?>
                 <tr>
-                    <td><?= $realisateur["identite"] ?></td>
-                    <td><?= $realisateur["date"] ?></td>
+                    <td><a href="index.php?action=detailRealisateurs&id=<?=$realisateurs["id_personne"]?>"><?= $realisateurs["identite"] ?></a></td>
+                    <td><?= $realisateurs["date"] ?></td>
                 </tr>
             <?php } ?>
     </tbody>

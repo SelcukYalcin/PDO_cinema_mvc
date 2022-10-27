@@ -10,9 +10,9 @@
     </thead>
     <tbody>
         <?php
-            foreach ($requete->fetchAll() as $genre) { ?>
+            foreach ($requete->fetchAll() as $detailGenres) { ?>
                 <tr>
-                    <td><?= $genre["nom_genre"] ?></td>
+                    <td><a href="index.php?action=detailGenres&id=<?= $detailGenres["id_genre"] ?>"><?= $detailGenres["nom_genre"] ?></a></td>
                 </tr>
             <?php } ?>
     </tbody>
