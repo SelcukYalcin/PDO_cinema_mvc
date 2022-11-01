@@ -6,16 +6,16 @@
 <div class="aside">
     <div>
         <h1><?= $detailActeurs["identite"] ?></h1>           
-            <p>sexe : <?= $detailActeurs["sexe"] ?></p>
-            <p>Date de naissance : <?= $detailActeurs["date"] ?></p>
+            <p>Sexe : <?= $detailActeurs["sexe"] ?></p>
+            <p>Date de Naissance : <?= $detailActeurs["date"] ?></p>
     </div>
     
     <table>
         <thead>
             <tr>
                 <th>FILM</th>
-                <th>ANNEE DE SORTIE</th>
                 <th>ROLE</th>
+                <th>ANNEE DE SORTIE</th>
             </tr>
         </thead>
         <tbody>

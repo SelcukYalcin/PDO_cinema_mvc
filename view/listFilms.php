@@ -1,11 +1,10 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> films</p>
 
 <table>
     <thead>
         <tr>
-            <th>TITRE</th>
+            <th>FILM (<?= $requete->rowCount() ?>)</th>
             <th>ANNEE SORTIE FRANCE</th>
         </tr>
     </thead>
@@ -23,6 +22,6 @@
 <?php
 
 $titre = "Liste des films";
-$titre_secondaire = "Liste des films";
+$titre_secondaire = "FILMS";
 $contenu = ob_get_clean();
 require "view/template.php";

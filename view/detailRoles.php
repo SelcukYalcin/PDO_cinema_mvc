@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>TITRE DU FILM</th>
-                <th>NOM</th>
+                <th>ACTEUR</th>
             </tr>
         </thead>
         <tbody>

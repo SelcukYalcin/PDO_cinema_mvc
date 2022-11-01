@@ -4,24 +4,25 @@ namespace Controller;
 use Model\Connect;
 
 class CinemaController {
-    //----------- LISTER LES SECTIONS-----------
+    //----- LISTER LES SECTIONS -----
     public function listFilms() {
-        // On se connecte
+        //----- ON SE CONNECTE -----
         $pdo = Connect::seConnecter();
-        // On exécute la requête de notre choix
+        //----- ON EXECUTE LA REQUETE DE NOTRE CHOIX -----
         $requete = $pdo->query("
         SELECT id_film, titre, annee_sortie_france
         FROM film
         ORDER BY annee_sortie_france"
         );
-    // On relie par un "require" la vue qui nous intéresse (située dans le dossier "view")
+    //----- ON RELIE PAR UN "REQUIRE" LA VUE QUI NOUS INTERESSE (SITUE DANS "VIEW") -----
         require "view/listFilms.php";
     }
 
     public function listActeurs() {
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-        SELECT a.id_personne, CONCAT(p.prenom,' ', p.nom) AS identite, DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date
+        SELECT a.id_personne, CONCAT(p.prenom,' ', p.nom) AS identite, 
+        DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date
         FROM personne p
         INNER JOIN acteur a ON p.id_personne = a.id_personne
         ORDER BY p.date_naissance DESC
@@ -32,7 +33,8 @@ class CinemaController {
     public function listRealisateurs() {
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-        SELECT r.id_personne, CONCAT(p.prenom,' ',p.nom) AS identite, DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date
+        SELECT r.id_personne, CONCAT(p.prenom,' ',p.nom) AS identite, 
+        DATE_FORMAT(p.date_naissance, '%d/%m/%Y') AS date
         FROM realisateur r
         INNER JOIN personne p ON p.id_personne = r.id_personne
         ORDER BY date_naissance"
@@ -63,11 +65,12 @@ class CinemaController {
     }
 
 
-    // -------------AFFICHER LE DETAIL-------------------
+    //----- AFFICHER LE DETAIL -----
     public function detailFilms($id) {
         $pdo=Connect::seConnecter();
         $requete=$pdo->prepare("
-            SELECT id_film, titre, DATE_FORMAT(f.annee_sortie_france, '%Y') AS anneeSortie, note, SEC_TO_TIME(f.duree_minutes *60) AS duree , CONCAT(p.prenom,' ',p.nom) AS realisateur
+            SELECT id_film, titre, annee_sortie_france, note, 
+            SEC_TO_TIME(f.duree_minutes *60) AS duree , CONCAT(p.prenom,' ',p.nom) AS realisateur
             FROM film f
             INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
             INNER JOIN personne p ON r.id_personne = p.id_personne
@@ -195,26 +198,167 @@ class CinemaController {
         require "view/detailRoles.php";
     }
 
-    // ----------------AJOUT D'ELEMENTS ------------
+    // ----- FORMULAIRE -----
     public function formulaire() {
         require "view/formulaire.php";
-    }    
+    } 
+    //----- AJOUT D'UN CHAMP -----   
     public function addRole() {
         if (isset($_POST["submit"])) {
             $nom_role = filter_input(INPUT_POST, 'nom_role', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             if($nom_role) {
                 $pdo=Connect::seConnecter();
                 $requete=$pdo->prepare("
-                INSERT INTO Role (nom_role) VALUES (:nom_role)
+                INSERT INTO role (nom_role) VALUES (:nom_role)
                 ");
                 $requete->execute([
-                    ":nomRole" => $nom_role
+                    ":nom_role" => $nom_role
                 ]);
-                // redirection vers la liste des roles
+                //----- --> LISTE DES ROLES -----
                 header("Location: index.php?action=listRoles"); die;
             }
         }
         require "view/formulaire.php";
+    }
+    //----- AJOUT D'UN CHAMP -----
+    public function addGenre() {
+        if (isset($_POST["submit"])) {
+            $nom_genre = filter_input(INPUT_POST, 'nom_genre', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if($nom_genre) {
+                $pdo=Connect::seConnecter();
+                $requete=$pdo->prepare("
+                INSERT INTO genre (nom_genre) VALUES (:nom_genre)
+                ");
+                $requete->execute([
+                    ":nom_genre" => $nom_genre
+                ]);
+                //----- --> LISTE DES GENRES -----
+                header("Location: index.php?action=listGenre"); die;
+            }
+        }
+        require "view/formulaire.php";
+    }
+    //----- AJOUT D'UN CHAMP -----
+    public function addActeur() {
+        // ----- FILTRES -----
+        if(isset($_POST["submit"])) {
+            $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, 'sexe', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $date_naissance = filter_input(INPUT_POST, 'date_naissance', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $dateDeces = filter_input(INPUT_POST, 'date_deces', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            if($dateDeces == '') {
+                $dateDeces = NULL;
+            }
+            //----- SI LES FILTRES SONT VALIDES ----- 
+            if($nom && $prenom && $sexe && $date_naissance) {
+
+                //----- CONNEXION ET INSERTION -----
+                $pdo=Connect::seConnecter();
+                $requete=$pdo->prepare("
+                INSERT INTO personne (nom, prenom, sexe, date_naissance, date_deces) 
+                VALUES (:nom, :prenom, :sexe, :date_naissance, :date_deces)
+                ");
+                $requete->execute([
+                    ":nom" => $nom,
+                    ":prenom" => $prenom,
+                    ":sexe" => $sexe,
+                    ":date_naissance" => $date_naissance,
+                    ":date_deces" => NULL
+                ]);
+
+                $id_personne = $pdo->lastInsertId();
+                $requete2=$pdo->prepare("
+                INSERT INTO acteur (id_personne) 
+                VALUES (:id_personne)
+                ");
+                $requete2->execute([
+                    'id_personne' => $id_personne
+                ]);
+
+
+                //----- --> LISTE DES ACTEURS -----
+                header("Location: index.php?action=listActeurs"); die;
+            }
+        }
+        require "view/formulaire.php";
+    }
+    //----- AJOUT D'UN CHAMP -----
+    public function addRealisateur() {
+        if(isset($_POST["submit"])) {
+            //----- FILTRES -----
+            $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, 'sexe', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $date_naissance = filter_input(INPUT_POST, 'date_naissance', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $date_deces = filter_input(INPUT_POST, 'date_deces', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            if($date_deces == '') {
+                $date_deces = NULL;
+            }
+            //----- SI LES FILTRES SONT VALIDES -----
+            if($nom && $prenom && $sexe && $date_naissance) {
+
+                //----- CONNEXION ET INSERTION -----
+                $pdo=Connect::seConnecter();
+                $requete=$pdo->prepare("
+                INSERT INTO personne (nom, prenom, sexe, date_naissance, date_deces) 
+                VALUES (:nom, :prenom, :sexe, :date_naissance, :date_deces)
+                ");
+                $requete->execute([
+                    ":nom" => $nom,
+                    ":prenom" => $prenom,
+                    ":sexe" => $sexe,
+                    ":date_naissance" => $date_naissance,
+                    ":date_deces" => NULL
+                ]);
+
+                $id_personne = $pdo->lastInsertId();
+                $requete2=$pdo->prepare("
+                INSERT INTO realisateur (id_personne) 
+                VALUES (:id_personne)
+                ");
+                $requete2->execute([
+                    'id_personne' => $id_personne
+                ]);
+
+
+                //----- --> LISTE DES REALISATEURS -----
+                header("Location: index.php?action=listRealisateurs"); die;
+            }
+        }
+        require "view/formulaire.php";
+    }
+    //----- AJOUT D'UN CHAMP -----
+    public function addFilm() {
+        if(isset($_POST["submit"])) {
+
+            //----- FILTRES -----
+            $titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $annee_sortie_france = filter_input(INPUT_POST, 'annee_sortie_france', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $duree_minutes = filter_input(INPUT_POST, 'duree_minutes', FILTER_SANITIZE_NUMBER_INT);
+            $note = filter_input(INPUT_POST, 'note', FILTER_SANITIZE_NUMBER_INT);
+            $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_SANITIZE_NUMBER_INT); 
+            //----- SI LES FILTRES SONT VALIDES -----
+            if($titre && $annee_sortie_france && $duree_minutes && $note ) {
+                
+                //----- CONNEXION ET INSERTION -----
+                $pdo=Connect::seConnecter();
+                $requete=$pdo->prepare("
+                INSERT INTO film (titre, annee_sortie_france, duree_minutes, note, id_realisateur) 
+                VALUES (:titre, :annee_sortie_france, :duree_minutes, :note, :id_realisateur)
+                ");
+                $requete->execute([
+                    ":titre" => $titre,
+                    ":annee_sortie_france" => $annee_sortie_france,
+                    ":duree" => $duree_minutes,
+                    ":note" => $note,
+                    ":id_realisateur" => $id_realisateur
+                ]);
+            }
+        }
+        require  "view/formulaire.php";
     }
 
 }

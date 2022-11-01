@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> acteurs</p>
+
 
 <table>
     <thead>
         <tr>
-            <th>ACTEUR</th>
+            <th>ACTEUR (<?= $requete->rowCount() ?>)</th>
             <th>DATE DE NAISSANCE</th>
         </tr>
     </thead>
@@ -23,6 +23,6 @@
 <?php
 
 $titre = "Liste des acteurs";
-$titre_secondaire = "Liste des acteurs";
+$titre_secondaire = "ACTEURS";
 $contenu = ob_get_clean();
 require "view/template.php";

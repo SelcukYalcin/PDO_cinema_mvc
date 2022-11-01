@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> realisateurs</p>
+
 
 <table>
     <thead>
         <tr>
-            <th>REALISATEUR</th>
+            <th>REALISATEUR (<?= $requete->rowCount() ?>)</th>
             <th>DATE DE NAISSANCE</th>
         </tr>
     </thead>
@@ -23,6 +23,6 @@
 <?php
 
 $titre = "Liste des realisateurs";
-$titre_secondaire = "Liste des realisateurs";
+$titre_secondaire = "REALISATEURS";
 $contenu = ob_get_clean();
 require "view/template.php";

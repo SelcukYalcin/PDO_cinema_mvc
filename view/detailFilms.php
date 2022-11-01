@@ -3,34 +3,26 @@
 
 <div class="aside">
     <div>
-        <h1><?= $detailFilms["titre"] ?></h1>
-        <p><?= $detailFilms["note"] ?> / 5</p>
-        <p><?= $detailFilms["duree"] ?></p>
-        <p><?= $detailFilms["realisateur"] ?></p>
+        <h3><?= $detailFilms["titre"] ?></h3>
+        <p>Réalisateur: <?= $detailFilms["realisateur"] ?></p>
+        <p>Durée: <?= $detailFilms["duree"] ?></p>
+        <p>Année de sortie: <?= $detailFilms["annee_sortie_france"] ?></p>
+        <p>Note: <?= $detailFilms["note"] ?> / 5</p>        
     </div>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>ACTEUR</th>
-                <th>ROLE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($requete2->fetchAll() as $cast) { ?>
-            <tr>
-                <td><?= $cast["Acteur"] ?></td>
-                <td><?= $cast["Role"] ?></td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+    <div>
+        <h4>Casting</h4>
+        <?php foreach($requete2->fetchAll() as $cast) { ?>               
+            <ul> 
+                <li class="acteur"><?= $cast["Acteur"] ?>  <span style="color: black;">(<?= $cast["Role"] ?>)</span></li> 
+            </ul>
+        <?php } ?>
+    </div>
 </div>
 
 
 <?php
 
 $titre = "Détail du film";
-$titre_secondaire = "Détail du film";
+$titre_secondaire = "PDO Cinéma";
 $contenu = ob_get_clean();
 require "view/template.php";

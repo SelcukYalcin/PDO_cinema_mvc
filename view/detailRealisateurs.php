@@ -5,8 +5,8 @@
 <div class="aside">
     <div>
         <h1><?= $detailRealisateurs["identite"] ?></h1>
-                <p>sexe : <?= $detailRealisateurs["sexe"] ?></p>
-                <p>Date de naissance : <?= $detailRealisateurs["date"] ?></p>
+                <p>Sexe : <?= $detailRealisateurs["sexe"] ?></p>
+                <p>Date de Naissance : <?= $detailRealisateurs["date"] ?></p>
     </div>
     
     <table>

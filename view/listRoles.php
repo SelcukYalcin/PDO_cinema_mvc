@@ -1,11 +1,10 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> roles</p>
 
 <table>
     <thead>
         <tr>
-            <th>ROLE</th>
+            <th>ROLE (<?= $requete->rowCount() ?>)</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +19,7 @@
 
 <?php
 
-$titre = "Liste de role";
-$titre_secondaire = "Liste de role";
+$titre = "Liste des roles";
+$titre_secondaire = "ROLES";
 $contenu = ob_get_clean();
 require "view/template.php";

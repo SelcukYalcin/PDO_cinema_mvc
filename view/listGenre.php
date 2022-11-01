@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
-<p>il y a <?= $requete->rowCount() ?> genres</p>
+
 
 <table>
     <thead>
         <tr>
-            <th>GENRES</th>
+            <th>GENRE (<?= $requete->rowCount() ?>)</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +21,6 @@
 <?php
 
 $titre = "Liste de genre";
-$titre_secondaire = "Liste de genre";
+$titre_secondaire = "GENRES";
 $contenu = ob_get_clean();
 require "view/template.php";
