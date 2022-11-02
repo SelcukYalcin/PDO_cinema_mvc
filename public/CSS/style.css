@@ -1,13 +1,23 @@
 *{
     box-sizing: border-box;
+    margin: 0;
+    font-family:system-ui ; 
 }
-
-nav ul {
-    padding: 0;
+nav{
+    background-image: url(../img/mountains.png);
+}
+    nav ul {
+    padding: 20px;
     display: flex;
     text-decoration: none;
     list-style: none;
     justify-content: space-evenly;
+
+}
+nav li {
+    background-color: rgb(165, 218, 218);
+    enable-background: accumulate;
+    border-radius: 10px;
 }
 li a{
     text-decoration: none;
@@ -15,15 +25,27 @@ li a{
     border-radius: 10px;
     padding: 0px 15px;
 }
-h2,h3,h4{
-    font-family:system-ui ;
+h1,h2,h3,h4{
     color:#681d40;
+    font-family:system-ui ; 
 }
-.acteur{
-    font-family:system-ui ;
-    color:#681d40;
-
+ul {
+    margin: 0;
 }
 p{
-    font-family:system-ui ; 
+    margin: 0px;
+}
+.tde {
+    height:20px;
+    width:20px;
+    cursor:pointer;}
+
+#glob {display: flex;}
+.btn{
+    background-color: rgb(255, 238, 0);
+    border-radius: 10px;
+}
+input{
+    border-radius: 10px;
+    background-color: rgb(165, 218, 218);
 }

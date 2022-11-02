@@ -7,7 +7,15 @@
         <p>Réalisateur: <?= $detailFilms["realisateur"] ?></p>
         <p>Durée: <?= $detailFilms["duree"] ?></p>
         <p>Année de sortie: <?= $detailFilms["annee_sortie_france"] ?></p>
-        <p>Note: <?= $detailFilms["note"] ?> / 5</p>        
+        <p>Note: <?= $detailFilms["note"] ?>            
+        <div id="glob" >
+            <!-- <input type="number" name="note" id="note" required> -->
+            <img id="tde_1" src="public/img/star.png" class="tde"/>
+            <img id="tde_2" src="public/img/star.png" class="tde"/>
+            <img id="tde_3" src="public/img/star.png" class="tde"/>
+            <img id="tde_4" src="public/img/star.png" class="tde"/>
+            <img id="tde_5" src="public/img/star.png" class="tde"/>    
+        </div>        
     </div>
     <div>
         <h4>Casting</h4>

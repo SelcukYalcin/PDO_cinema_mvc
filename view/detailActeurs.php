@@ -14,8 +14,8 @@
         <thead>
             <tr>
                 <th>FILM</th>
-                <th>ROLE</th>
                 <th>ANNEE DE SORTIE</th>
+                <th>ROLE</th>
             </tr>
         </thead>
         <tbody>

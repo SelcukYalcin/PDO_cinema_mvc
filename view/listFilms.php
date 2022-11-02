@@ -1,6 +1,5 @@
 <?php ob_start(); ?>
 
-
 <table>
     <thead>
         <tr>

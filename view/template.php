@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,8 +14,8 @@
             <li> <a href="index.php?action=listFilms">FILMS</a></li> 
             <li> <a href="index.php?action=listActeurs">ACTEURS</a></li>
             <li> <a href="index.php?action=listRealisateurs">REALISATEURS</a> </li>
-            <li> <a href="index.php?action=listGenre">GENRES</a></li>
             <li> <a href="index.php?action=listRoles">ROLES</a></li>
+            <li> <a href="index.php?action=listGenre">GENRES</a></li>
             <li> <a href="index.php?action=formulaire">INSERTION</a></li> 
         </ul>
     </nav>
@@ -24,7 +24,6 @@
             <h2 ><?= $titre_secondaire ?></h2>
             <?= $contenu ?>
         </div>
-</main>
-    
+    </main>  
 </body>
 </html>
