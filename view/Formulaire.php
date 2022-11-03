@@ -58,20 +58,30 @@ ob_start();
     <h2>Ajouter un Film</h2>
     <form class="form" action="index.php?action=addFilm" method="post">
         <input type="text" name="titre" id="titre" placeholder="Titre" required><br>
-        <input type="number" name="annee_sortie_france" id="annee_sortie_france" min="1880" max=2022 placeholder="Année de sortie" required><br>
-        <input type="number" name="duree_minutes" id="duree_minutes" placeholder="durée en minutes" min="1" max="300" required><br>       
-        <div id="glob" >
-            <input type="number" name="note" id="note" required>
-            <img id="tde_1" src="public/img/star.png" class="tde"/>
-            <img id="tde_2" src="public/img/star.png" class="tde"/>
-            <img id="tde_3" src="public/img/star.png" class="tde"/>
-            <img id="tde_4" src="public/img/star.png" class="tde"/>
-            <img id="tde_5" src="public/img/star.png" class="tde"/>    
-        </div>    
-        <input type="text" name="realisateur" id="id_realisateur" placeholder="Réalisateur" required><br>
+        <input type="number" name="annee_sortie_france" id="annee_sortie_france" min="1900" max=2022 placeholder="Année de sortie" required><br>
+        <input type="number" name="duree_minutes" id="duree_minutes" placeholder="durée en minutes" min="1" max="300" required><br> 
+
+        <input type="number" name="note" id="note" placeholder="note" min="1" max="5" required><br> 
+    <!-- <span class="C2etoiles"><div>1</div>
+    
+    <span class="C2etoiles"><div>2</div>
+        
+        <span class="C2etoiles"><div>3</div>
+            
+            <span class="C2etoiles"><div>4</div>
+                
+                <span class="C2etoiles"><div>5</div> <!-- les div ici permettent l'affichage de l'étoile via la propriété "content", avec le sélecteur ".C2etoiles div::after" -->
+                </span>
+            </span>
+        </span>
+    </span>
+</span>    -->
+        <input type="number" name="realisateur" id="realisateur" placeholder="Réalisateur" required><br>
+
         <input type="submit" name="submit" class= btn value="AJOUTER">
     </form>
 </div>
+
 
 <?php
 $titre = "Formulaire";

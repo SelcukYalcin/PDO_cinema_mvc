@@ -323,7 +323,6 @@ class CinemaController {
                     'id_personne' => $id_personne
                 ]);
 
-
                 //----- --> LISTE DES REALISATEURS -----
                 header("Location: index.php?action=listRealisateurs"); die;
             }
@@ -334,23 +333,26 @@ class CinemaController {
     public function addFilm() {
         if(isset($_POST["submit"])) {
            
-
             //----- FILTRES -----
-            $titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_FULL_SPECIAL_CHARS);           
+            $titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_FULL_SPECIAL_CHARS);         
             $annee_sortie_france = filter_input(INPUT_POST, 'annee_sortie_france', FILTER_SANITIZE_NUMBER_INT);
             $duree_minutes = filter_input(INPUT_POST, 'duree_minutes', FILTER_SANITIZE_NUMBER_INT);
             $note = filter_input(INPUT_POST, 'note', FILTER_SANITIZE_NUMBER_INT);
-            $id_realisateur = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_NUMBER_INT); 
+            $id_realisateur = filter_input(INPUT_POST, 'realisateur', FILTER_SANITIZE_NUMBER_INT); 
             //----- SI LES FILTRES SONT VALIDES -----
-            //  var_dump($annee_sortie_france);die;
+            //  var_dump($titre, $annee_sortie_france, $duree_minutes, $note, $id_realisateur); die;
+            //  echo $titre, $annee_sortie_france, $duree_minutes, $note, $id_realisateur;
+
             if($titre && $annee_sortie_france && $duree_minutes && $note && $id_realisateur) {
+                // ----- CONNEXION ET INSERTION -----
+
                 
-                //----- CONNEXION ET INSERTION -----
+
                 $pdo=Connect::seConnecter();
                 $requete=$pdo->prepare("
                 INSERT INTO film (titre, annee_sortie_france, duree_minutes, note, id_realisateur) 
                 VALUES (:titre, :annee_sortie_france, :duree_minutes, :note, :id_realisateur)
-                ");
+                "); 
                 $requete->execute([
                     ":titre" => $titre,
                     ":annee_sortie_france" => $annee_sortie_france,
@@ -359,21 +361,12 @@ class CinemaController {
                     ":id_realisateur" => $id_realisateur
                 ]);
 
-          
-            
                 
-                // $id_film = $pdo->lastInsertId();
-                // $requete2=$pdo->prepare("
-                // INSERT INTO film (id_film) 
-                // VALUES (:id_film)
-                // ");
-                // $requete2->execute([
-                //     'id_film' => $id_film
-                // ]);
+
                 header("Location: index.php?action=listFilms"); die;
             }
         }
         require  "view/formulaire.php";
-    }
+    }  
 
 }
