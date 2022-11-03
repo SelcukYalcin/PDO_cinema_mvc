@@ -62,20 +62,7 @@ ob_start();
         <input type="number" name="duree_minutes" id="duree_minutes" placeholder="durée en minutes" min="1" max="300" required><br> 
 
         <input type="number" name="note" id="note" placeholder="note" min="1" max="5" required><br> 
-    <!-- <span class="C2etoiles"><div>1</div>
-    
-    <span class="C2etoiles"><div>2</div>
-        
-        <span class="C2etoiles"><div>3</div>
-            
-            <span class="C2etoiles"><div>4</div>
-                
-                <span class="C2etoiles"><div>5</div> <!-- les div ici permettent l'affichage de l'étoile via la propriété "content", avec le sélecteur ".C2etoiles div::after" -->
-                </span>
-            </span>
-        </span>
-    </span>
-</span>    -->
+
         <input type="number" name="realisateur" id="realisateur" placeholder="Réalisateur" required><br>
 
         <input type="submit" name="submit" class= btn value="AJOUTER">
